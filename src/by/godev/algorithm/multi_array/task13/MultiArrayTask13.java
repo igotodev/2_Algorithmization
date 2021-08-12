@@ -78,20 +78,4 @@ public class MultiArrayTask13 {
 		}
 	}
 
-	// для красивой отрисовки
-	public static void printTable(int[] arr) {
-		for (int i = 0; i < arr.length; i++) {
-			System.out.print("+---------------");
-		}
-		System.out.print("+\n");
-		for (int j = 0; j < arr.length; j++) {
-			System.out.printf("\t%d\t|", arr[j]);
-		}
-		System.out.print("\n");
-		for (int d = 0; d < arr.length; d++) {
-			System.out.print("+---------------");
-		}
-		System.out.print("+\n");
-	}
-
 }
