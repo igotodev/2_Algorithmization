@@ -14,24 +14,27 @@ public class SortArrayTask8 {
 		Fraction[] doneArr;
 
 		arr = initFraction(4);
-		doneArr = commonDenForFraction(arr);
+		doneArr = toCommonDenominator(arr);
 
-		printTable(arr, "Изначальный массив дробей:");
+		printTable(arr, "Изначальный неотсортированный массив дробей:");
 
-		shellNumSort(doneArr);
-		printTable(doneArr, "Приведенный массив дробей:");
+		shellNumeratorSort(doneArr);
+		printTable(doneArr, "Приведенный и отсортированный массив дробей:");
 	}
 
-	public static Fraction[] commonDenForFraction(Fraction[] arr) {
+	public static Fraction[] toCommonDenominator(Fraction[] arr) {
 		Fraction[] doneArr;
 
 		doneArr = new Fraction[arr.length];
 
 		for (int i = 0; i < arr.length; i++) {
-			int x = LCMArray(arr);
-			int den = x / arr[i].denominator;
-			// System.out.println(den);
-			doneArr[i] = new Fraction(arr[i].numerator * den, arr[i].denominator * den);
+			int x;
+			int den;
+
+			x = LCMArray(arr);
+			den = x / arr[i].getDenominator();
+
+			doneArr[i] = new Fraction(arr[i].getNumerator() * den, arr[i].getDenominator() * den);
 		}
 
 		return doneArr;
@@ -41,11 +44,11 @@ public class SortArrayTask8 {
 		int r;
 		int i;
 
-		r = arr[0].denominator;
+		r = arr[0].getDenominator();
 		i = 0;
 
 		while (i < arr.length - 1) {
-			r = LCM(r, arr[++i].denominator);
+			r = LCM(r, arr[++i].getDenominator());
 		}
 
 		return r;
@@ -63,13 +66,13 @@ public class SortArrayTask8 {
 		}
 	}
 
-	public static void shellNumSort(Fraction[] arr) {
+	public static void shellNumeratorSort(Fraction[] arr) {
 		int i = 0;
 
 		while (i < arr.length - 1) {
 			Fraction mid;
 
-			if (arr[i].numerator > arr[i + 1].numerator) {
+			if (arr[i].getNumerator() > arr[i + 1].getNumerator()) {
 				mid = arr[i + 1];
 				arr[i + 1] = arr[i];
 				arr[i] = mid;
@@ -89,13 +92,13 @@ public class SortArrayTask8 {
 		arr = new Fraction[len];
 
 		for (int i = 0; i < len; i++) {
-			arr[i] = new Fraction(getNum(6), getNum(6));
+			arr[i] = new Fraction(randNumber(6), randNumber(6));
 		}
 
 		return arr;
 	}
 
-	public static int getNum(int max) {
+	public static int randNumber(int max) {
 		Random rand = new Random();
 		long newRandSeed;
 		int num;
@@ -114,7 +117,7 @@ public class SortArrayTask8 {
 	public static void printTable(Fraction[] arr, String msg) {
 		System.out.print(msg);
 		for (int j = 0; j < arr.length; j++) {
-			System.out.printf(" %d/%d ", arr[j].numerator, arr[j].denominator);
+			System.out.printf(" %d/%d ", arr[j].getNumerator(), arr[j].getDenominator());
 		}
 		System.out.print("\n");
 
