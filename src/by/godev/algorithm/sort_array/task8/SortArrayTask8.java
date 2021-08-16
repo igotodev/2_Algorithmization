@@ -28,13 +28,13 @@ public class SortArrayTask8 {
 		doneArr = new Fraction[arr.length];
 
 		for (int i = 0; i < arr.length; i++) {
-			int x;
 			int den;
+			int x;
 
-			x = LCMArray(arr);
-			den = x / arr[i].getDenominator();
+			den = LCMArray(arr);
+			x = den / arr[i].getDenominator();
 
-			doneArr[i] = new Fraction(arr[i].getNumerator() * den, arr[i].getDenominator() * den);
+			doneArr[i] = new Fraction(arr[i].getNumerator() * x, arr[i].getDenominator() * x);
 		}
 
 		return doneArr;
